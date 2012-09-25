@@ -11,7 +11,7 @@ The user is asked for a word length and a number of guesses before the start
 of the game.
 
 Run Options:
-- hangman.py 			Play the game with the provided Dictionary.txt word list.
+- hangman.py 		Play the game with the provided Dictionary.txt word list.
 - hangman.py --input 	Play the game with a word randomly chosen from a text
 						file of your choice.
 
