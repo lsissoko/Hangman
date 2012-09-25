@@ -13,7 +13,7 @@ of the game.
 Run Options:
 - hangman.py 		Play the game with the provided Dictionary.txt word list.
 - hangman.py --input 	Play the game with a word randomly chosen from a text
-						file of your choice.
+			file of your choice.
 
 Note: 
 - A word length of 0 means that any word in the list may be chosen.
@@ -101,10 +101,7 @@ def play(word, missesLeft):
 
 	while missesLeft > 0 and not victory:
 		print_info(word, goodGuesses, badGuesses, missesLeft)
-		(missesLeft, goodGuesses, badGuesses) = check_guess(word, 
-															missesLeft, 
-															goodGuesses, 
-															badGuesses)
+		(missesLeft, goodGuesses, badGuesses) = check_guess(word, missesLeft, goodGuesses, badGuesses)
 		victory = ( sorted(goodGuesses) == sorted(list(set(word))) )
 	
 	end_game(word, missesLeft, victory)
