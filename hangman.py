@@ -35,10 +35,9 @@ def get_textfile_name():
 	return filename
 
 def get_word_list(filename):
-	f = open(filename, "r")
-	words = f.read().split() # list of words
-	wordLengths = list( set([len(word) for word in words]) )
-	f.close()
+	with open(filename, "r") as f:
+		words = f.read().split() # list of words
+		wordLengths = list( set([len(word) for word in words]) )
 	return (words, wordLengths)
 	
 def get_secret_word(words, wordLength):
