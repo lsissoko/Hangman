@@ -93,15 +93,17 @@ def check_guess(word, missesLeft, goodGuesses, badGuesses):
 	return (missesLeft, goodGuesses, badGuesses)
 
 def play(word, missesLeft):
-	badGuesses, goodGuesses = [], []
+	badGuesses = []
+	goodGuesses = []
 	if re.search(r'\s', word):
 		goodGuesses.append(" ")
 	victory = False
+	target = sorted(list(set(word)))
 
 	while missesLeft > 0 and not victory:
 		print_info(word, goodGuesses, badGuesses, missesLeft)
 		(missesLeft, goodGuesses, badGuesses) = check_guess(word, missesLeft, goodGuesses, badGuesses)
-		victory = ( sorted(goodGuesses) == sorted(list(set(word))) )
+		victory = ( sorted(goodGuesses) == target )
 	
 	end_game(word, missesLeft, victory)
 
