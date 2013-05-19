@@ -3,7 +3,7 @@
 A command line Hangman game written in Python.
 
 ####Run Options:
-- `hangman.py` to play the game with the provided dictionary.txt word list.
+- `hangman.py` to play the game with the provided **dictionary.txt** word list.
 - `hangman.py --input` to play the game with a word randomly chosen from a text file of your choice.
 
 ####Instructions:
