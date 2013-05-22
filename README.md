@@ -1,4 +1,4 @@
-##Python Hangman
+##Hangman
 
 A command line Hangman game written in Python.
 
