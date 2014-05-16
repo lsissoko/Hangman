@@ -1,9 +1,3 @@
-import math
-import random
-import re
-import sys
-import tkFileDialog
-
 '''
 	Python Command Line Hangman
 
@@ -19,10 +13,14 @@ Note:
 - A word length of 0 means that any word in the list may be chosen.
 - A negative number of guesses is made positive (so -5 becomes 5).
 - A float/decimal number of guesses is truncated to an integer.
-
-@author Lamine S. Sissoko
-@version 2011.12.31
 '''
+
+import math
+import random
+import re
+import string
+import sys
+import tkFileDialog
 
 def get_textfile_name():
 	filename = tkFileDialog.askopenfilename()
@@ -56,17 +54,15 @@ def print_info(word, goodGuesses, badGuesses, missesLeft):
 			secret += "  "
 		else:
 			secret += "_ "
-	print "\n" + secret
-	print "misses left: ", missesLeft
-	print "bad guesses so far: ", badGuesses
+	print "\n%s" % secret
+	print "misses left: %d" % missesLeft
+	print "bad guesses so far:", badGuesses
 	
 def ask_for_letter(message):
-	letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p",
-			"q","r","s","t","u","v","w","x","y","z"]
-	letter = raw_input(message)
-	while not letter.lower() in letters:
+	letter = raw_input(message).lower()
+	while not letter in string.lowercase:
 		print "error, you must choose a letter"
-		letter = raw_input(message)
+		letter = raw_input(message).lower()
 	return letter
 
 def ask_for_int(message, unsigned=True):
@@ -79,15 +75,15 @@ def ask_for_int(message, unsigned=True):
 	return num
 
 def check_guess(word, missesLeft, goodGuesses, badGuesses):
-	guess = ask_for_letter("\n>> guess a letter: ").lower()
+	guess = ask_for_letter("\n>> guess a letter: ")
 	while guess in goodGuesses or guess in badGuesses:
-		print "you already guessed \"" + guess + "\""
+		print "you already guessed \"%s\"" % guess
 		guess = ask_for_letter("\n>> guess a letter: ")
 	
 	if guess not in word:
 		badGuesses.append(guess)
 		missesLeft -= 1
-		print "no \"" + guess + "\" in the secret word"
+		print "no \"%s\" in the secret word" % guess
 	else:
 		goodGuesses.append(guess)
 	return (missesLeft, goodGuesses, badGuesses)
@@ -110,9 +106,9 @@ def play(word, missesLeft):
 def end_game(word, missesLeft, victory):
 	print "-------------------------------------------------"
 	if missesLeft == 0:
-		print "\nyou lose :-(, the secret word was: \"" + word + "\""
+		print "\nyou lose :-(, the secret word was: \"%s\"" % word
 	elif victory:
-		print "\nsuccess! :), you found the word: \"" + word + "\""
+		print "\nsuccess! :), you found the word: \"" % word
 	
 	againMessage = "\nDo you want to play another game (yes or no)? "
 	again = raw_input(againMessage).lower()
@@ -135,7 +131,7 @@ def main():
 			filename = get_textfile_name()
 			#del sys.argv[1]
 		
-		print "\nHANGMAN\n\ndictionary in use: " + filename + "\n"
+		print "\nHANGMAN\n\ndictionary in use: %s\n" % filename
 		
 		(words, wordLengths) = get_word_list(filename)
 
