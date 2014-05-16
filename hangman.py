@@ -108,7 +108,7 @@ def end_game(word, missesLeft, victory):
 	if missesLeft == 0:
 		print "\nyou lose :-(, the secret word was: \"%s\"" % word
 	elif victory:
-		print "\nsuccess! :), you found the word: \"" % word
+		print "\nsuccess! :), you found the word: \"%s\"" % word
 	
 	againMessage = "\nDo you want to play another game (yes or no)? "
 	again = raw_input(againMessage).lower()
